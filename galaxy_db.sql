@@ -2,7 +2,7 @@
 -- First table
 CREATE TABLE planets(
      id INT AUTO_INCREMENT PRIMARY KEY,
-     name  VARCHAR(255) NOT NULL,
+     name  VARCHAR(255) NOT NULL ,
      moons INT,
      dist_from_sun VARCHAR(255) NOT NULL,
      diameter VARCHAR(255) NOT NULL,
@@ -26,4 +26,42 @@ VALUES ('Venus', 0, '108.2 millions km', '12,104 km', '225 days', '200 °C', '46
        ('Uranus', 27, '2,870,658,186 km', '51,118 km', '30,687 days', '-216 °C', '-199 °C'),
        ('Neptune', 14, '4,498,396,441 km', '49,528 km', '60,190 days', '-214 °C', '-180 °C'),
        ('Pluto', 5, '5,874,000,000 km', '2,372 km', '90,579 days', '-256 °C', '-200 °C');
-     
+
+
+-- create new table images https://space-facts.com/wp-content/uploads/mercury.png
+CREATE TABLE images(
+picture_url VARCHAR(255) NOT NULL,
+picture_name VARCHAR(255) NOT NULL,
+picture_id INT,
+FOREIGN KEY(picture_id) REFERENCES planets(id)
+);
+-- bulk insert rest of the data for the table
+INSERT INTO images(picture_url,picture_name,picture_id)
+VALUES ('https://space-facts.com/wp-content/uploads/mercury.png', 'Mercury', 1),
+       ('https://space-facts.com/wp-content/uploads/venus.png', 'Venus', 2),
+       ('https://space-facts.com/wp-content/uploads/earth.png', 'Earth', 3),
+       ('https://space-facts.com/wp-content/uploads/mars.jpg', 'Mars', 4),
+       ('https://space-facts.com/wp-content/uploads/jupiter.png', 'Jupiter', 5),
+       ('https://space-facts.com/wp-content/uploads/saturn.png', 'Saturn', 6),
+       ('https://space-facts.com/wp-content/uploads/uranus.jpg', 'Uranus', 7),
+       ('https://space-facts.com/wp-content/uploads/neptune.png', 'Neptune', 8),
+       ('https://space-facts.com/wp-content/uploads/pluto.png', 'Pluto', 9);
+
+-- JOINING BOTH TABLES
+SELECT * FROM planets FULL JOIN images ON name = picture_name LIMIT 9;
+
+-- CREATE NEW TABLE citizens
+CREATE TABLE citizens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    user_id INT DEFAULT 3,
+    FOREIGN KEY(user_id) REFERENCES planets(id)
+    );
+    
+INSERT INTO citizens(first_name, last_name, email, user_id)
+VALUES ('Dimitar', 'Milev', 'rokambol_88@abv.bg', 3)
+
+INSERT INTO citizens(first_name, last_name, email, user_id)
+VALUES ('Sam','Hilton', 'agdmndn@jsmn.mn', 2)
