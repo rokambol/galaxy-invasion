@@ -52,7 +52,6 @@ SELECT * FROM planets FULL JOIN images ON name = picture_name LIMIT 9;
 
 -- CREATE NEW TABLE citizens
 CREATE TABLE citizens (
-    id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
     email VARCHAR(255) UNIQUE,
@@ -65,3 +64,40 @@ VALUES ('Dimitar', 'Milev', 'rokambol_88@abv.bg', 3)
 
 INSERT INTO citizens(first_name, last_name, email, user_id)
 VALUES ('Sam','Hilton', 'agdmndn@jsmn.mn', 2)
+
+-- counting citizens of each planets
+
+SELECT * FROM
+(SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 1
+UNION ALL
+SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 2 
+UNION ALL
+SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 3
+UNION ALL
+SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 4
+UNION ALL
+SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 5
+UNION ALL
+SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 6
+UNION ALL
+SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 7
+UNION ALL
+SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 8
+UNION ALL
+SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 9) AS NA 
+JOIN
+(SELECT *, COUNT(user_id) FROM planets JOIN images JOIN citizens) AS DEL
+LIMIT 9
+
+
+
+LIMIT 9
+
+ 
+
+
+
+(SELECT id, moons, dist_from_sun, name, picture_name, picture_url, diameter, orbit_period, max_surface_temp FROM planets JOIN images)AS GREAT
+ DESC
+
+ 

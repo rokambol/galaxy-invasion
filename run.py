@@ -29,19 +29,40 @@ connection = pymysql.connect(host='localhost',
 	#close connectionSELECT * FROM planets JOIN images JOIN citizensFULL JOIN citizens ON name = picture_name LIMIT 9
 #	connection.close()AND 
 #
-union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9;"""
+union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9"""
+count1 =""" SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 1
+			UNION ALL
+			SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 2
+			UNION ALL
+			SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 3
+			UNION ALL
+			SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 4
+			UNION ALL
+			SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 5
+			UNION ALL
+			SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 6
+			UNION ALL
+			SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 7
+			UNION ALL
+			SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 8
+			UNION ALL
+			SELECT IFNULL(COUNT(user_id), 0) AS population FROM citizens WHERE user_id = 9; """
 
-	
+
+d = {}	
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	cur = connection.cursor(pymysql.cursors.DictCursor)
 	cur.execute(union_table)
-	result = cur.fetchall()
+	res = cur.fetchall()
 	cur.close()
 	
 	cur = connection.cursor(pymysql.cursors.DictCursor)
-	cur.execute('SELECT * FROM citizens AS populatons')
+	cur.execute(count1)
 	pop = cur.fetchall()
+	#print(pop)
+	result = zip(res, pop)
+	print(result)#, pop=pop
 	return render_template('home.html', page_title='Welcome', result = result, pop=pop)
 
 
