@@ -89,15 +89,70 @@ JOIN
 (SELECT *, COUNT(user_id) FROM planets JOIN images JOIN citizens) AS DEL
 LIMIT 9
 
+-- CREATE NEW TABLE CONTAINING ADDITIONAL INFO FOR EACH PLANET
 
+CREATE TABLE add_info(
+    mass VARCHAR(25),
+    first_record VARCHAR(100),
+    recorded_by VARCHAR(50),
+    planet_schema VARCHAR(100),
+    planet_fact1 VARCHAR(80),
+    planet_fact2 VARCHAR(80),
+    planet_fact3 VARCHAR(80),
+    planet_fact4 VARCHAR(80),
+    planet_fact5 VARCHAR(80),
+    planet_fact6 VARCHAR(80),
+    planet_fact_id INT,
+    FOREIGN KEY(planet_fact_id) REFERENCES planets(id)
+    )
 
-LIMIT 9
+--TRIAL INSERT INFO INTO TABLE
 
- 
-
-
-
-(SELECT id, moons, dist_from_sun, name, picture_name, picture_url, diameter, orbit_period, max_surface_temp FROM planets JOIN images)AS GREAT
- DESC
-
+INSERT INTO add_info(mass, first_record, recorded_by, planet_schema,
+                     planet_fact1,  planet_fact2, planet_fact3, planet_fact4,
+                      planet_fact5, planet_fact6, planet_fact_id)
+VALUES ('3.30 x 10^23 kg (5.5% Earth)', '14th century BC', 'Assyrian astronomers',
+        'https://space-facts.com/wp-content/uploads/mercury-size.png',
+        'Mercury does not have any moons or rings.',
+        'Your weight on Mercury would be 38% of your weight on Earth.',
+        'A day on the surface of Mercury lasts 176 Earth days.',
+        'A year on Mercury takes 88 Earth days.',
+        'Mercury has a diameter of 4,879 km, making it the smallest planet.',
+        'It’s not known who discovered Mercury.', 1),
+        ('4.87 x 10^24 kg (81.5% Earth)', '17th century BC', 'Babylonian astronomers',
+         'https://space-facts.com/wp-content/uploads/venus-size.png',
+         'Venus is nearly as big as the Earth with a diameter of 12,104 km.',
+         'Venus is thought to be made up of a central iron core, rocky mantle and silicate crust.',
+         'A day on the surface of Venus (solar day) would appear to take 117 Earth days.',
+         'A year on Venus takes 225 Earth days.',
+         'The surface temperature on Venus can reach 471 °C.',
+         'Venus does not have any moons or rings.', 2),
+         ('5.97 x 10^24 kg','', '','https://space-facts.com/wp-content/uploads/earth-size.png',
+         '','','','','','', 3),
+         ('6.42 x 10^23 kg (10.7% Earth)', '2nd millennium BC', 'Egyptian astronomers',
+         'https://space-facts.com/wp-content/uploads/mars-size.png',
+         'Mars and Earth have approximately the same landmass.',
+         'Mars is home to the tallest mountain in the solar system.',
+         'Only 18 missions to Mars have been successful.',
+         'Mars has the largest dust storms in the solar system.',
+         'On Mars the Sun appears about half the size as it does on Earth.',
+         'Mars takes its name from the Roman god of war.', 4),
+         ('1.90 × 10^27 kg (318 Earths)', '7th or 8th century BC', 'Babylonian astronomers',
+          'https://space-facts.com/wp-content/uploads/jupiter-size-1.png', 
+          'Jupiter is the fourth brightest object in the solar system.',
+          'The ancient Babylonians were the first to record their sightings of Jupiter.',
+          'Jupiter has the shortest day of all the planets.',
+          'Jupiter orbits the Sun once every 11.8 Earth years.',
+          'Jupiter has unique cloud features.',
+          'The Great Red Spot is a huge storm on Jupiter.', 5),
+          
+          
+          
+          SELECT * FROM planets INNER JOIN images ON planets.id = images.picture_id;
+         
+        
+        
+        
+        
+        
  

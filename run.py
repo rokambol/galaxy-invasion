@@ -68,7 +68,18 @@ def home():
 
 @app.route('/about')
 def about():
-	return render_template('about.html', page_title='About')
+	cur = connection.cursor(pymysql.cursors.DictCursor)
+	cur.execute(union_table)
+	res = cur.fetchall()
+	cur.close()
+	
+	cur = connection.cursor(pymysql.cursors.DictCursor)
+	cur.execute(count1)
+	pop = cur.fetchall()
+	#print(pop)
+	result = zip(res, pop)
+	
+	return render_template('about.html', page_title='About', result=result)
 	
 	
 	
@@ -107,6 +118,26 @@ def citizenship():
 @app.route('/project', methods=['GET', 'POST'])
 def project():
 	return render_template('project.html', page_title='Project')
+	
+	
+	
+	
+	
+@app.route('/mercury', methods=['GET', 'POST'])
+def mercury():
+	mercury = """ SELECT * FROM planets LEFT JOIN add_info; """
+	cur = connection.cursor(pymysql.cursors.DictCursor)
+	cur.execute(mercury)
+	mer = cur.fetchall()
+	return render_template('mercury.html', page_title='Mercury', mer = mer)
 
-
+@app.route('/planet-details/<planet_id>', methods=['GET'])
+def planet_details(planet_id):
+	cur = connection.cursor(pymysql.cursors.DictCursor)
+	cur.execute('SELECT * FROM planets INNER JOIN images INNER JOIN add_info ON planets.id = images.picture_id WHERE planets.id = {}'.format(planet_id))
+	planet = cur.fetchone()
+	
+	return render_template('planet_details.html', planet=planet)
+	
+	
 app.run(host=os.environ.get('IP'), port=os.environ.get('PORT'), debug=True)
