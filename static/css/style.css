@@ -1,8 +1,34 @@
+body{
+  width: 100%;
+  height: 100%;
+  background-color: #000000;  
+}
 
-
-.projects-section 
-.bg-dark {
-    background-color: #000000;
-    color: black;
-    
+.bar {
+            fill: #5f89ad;
+        }
+        
+        .axis {
+            font-size: 13px;
+        }
+        .y axis
+        .axis path,
+        .axis line {
+            fill: white;
+            
+        }
+        text,
+        .label {
+            font-size: 1.4rem;
+            fill: white;
+        }
+        
+h6 {
+    padding-left: 20rem;
+    padding-top: 2rem;
+}
+footer {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
 }
