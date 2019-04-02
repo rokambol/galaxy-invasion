@@ -45,7 +45,7 @@ count1 =""" SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	cur = connection.cursor(pymysql.cursors.DictCursor)
-	cur.execute(union_table)
+	cur.execute('SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9')
 	res = cur.fetchall()
 	
 	
