@@ -13,10 +13,10 @@ Bootstrap(app)
 username = os.getenv('C9_USER')
 
 #connect to database
-connection = pymysql.connect(host='localhost',
-							 user=username,
-							 password='',
-							 db='galaxy')
+connection = pymysql.connect(host='eu-cdbr-west-02.cleardb.net',
+							 user='b3b73ba9b08686',
+							 password='6f57adbe',
+							 db='heroku_a58e0fd1d326f7b')
  
 #variables for query extract data from SQL tables
 union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9"""
