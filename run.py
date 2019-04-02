@@ -13,10 +13,10 @@ Bootstrap(app)
 username = os.getenv('C9_USER')
 #mysql://b3b73ba9b08686:6f57adbe@eu-cdbr-west-02.cleardb.net/heroku_a58e0fd1d326f7b?reconnect=true
 #connect to database
-connection = pymysql.connect(host='eu-cdbr-west-02.cleardb.net',
-							 user='b3b73ba9b08686',
-							 password='6f57adbe',
-							 db='heroku_a58e0fd1d326f7b')
+connection = pymysql.connect(host='localhost',
+							 user=username,
+							 password='',
+							 db='galaxy')
  
 #variables for query extract data from SQL tables
 union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9"""
@@ -45,9 +45,9 @@ count1 =""" SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	cur = connection.cursor(pymysql.cursors.DictCursor)
-	cur.execute('SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9')
+	cur.execute(union_table)
 	res = cur.fetchall()
-	
+	cur.close()
 	
 	cur = connection.cursor(pymysql.cursors.DictCursor)
 	cur.execute(count1)
