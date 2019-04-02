@@ -47,7 +47,7 @@ def home():
 	cur = connection.cursor(pymysql.cursors.DictCursor)
 	cur.execute(union_table)
 	res = cur.fetchall()
-	cur.close()
+	
 	
 	cur = connection.cursor(pymysql.cursors.DictCursor)
 	cur.execute(count1)
