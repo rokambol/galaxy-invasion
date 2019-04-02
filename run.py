@@ -10,13 +10,13 @@ app.config['SECRET_KEY']='THISISendLess986'
 Bootstrap(app)
 
 #create username
-username = os.getenv('C9_USER')
-#mysql://b3b73ba9b08686:6f57adbe@eu-cdbr-west-02.cleardb.net/heroku_a58e0fd1d326f7b?reconnect=true
+username = 'b8dfc228f15bc2'  #os.getenv('C9_USER')
+#mysql://b8dfc228f15bc2:c2717711@eu-cdbr-west-02.cleardb.net/heroku_a775396961c4add?reconnect=true
 #connect to database
-connection = pymysql.connect(host='localhost',
-							 user=username,
-							 password='',
-							 db='galaxy')
+connection = pymysql.connect(host='eu-cdbr-west-02.cleardb.net',
+							 user=username,    
+							 password='c2717711',
+							 db='heroku_a775396961c4add')#galaxy
  
 #variables for query extract data from SQL tables
 union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9"""
