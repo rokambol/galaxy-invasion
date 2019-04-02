@@ -11,7 +11,7 @@ Bootstrap(app)
 
 #create username
 username = os.getenv('C9_USER')
-
+#mysql://b3b73ba9b08686:6f57adbe@eu-cdbr-west-02.cleardb.net/heroku_a58e0fd1d326f7b?reconnect=true
 #connect to database
 connection = pymysql.connect(host='eu-cdbr-west-02.cleardb.net',
 							 user='b3b73ba9b08686',
