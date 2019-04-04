@@ -1,10 +1,7 @@
 import os
 import pymysql
-import psycopg2
 from flask import Flask, json, redirect, render_template, request, url_for, session, escape, jsonify
 from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm
-from html.parser import HTMLParser
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='THISISendLess986'
