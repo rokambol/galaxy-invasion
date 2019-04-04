@@ -1,5 +1,6 @@
 import os
 import pymysql
+import psycopg2
 from flask import Flask, json, redirect, render_template, request, url_for, session, escape, jsonify
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -9,14 +10,15 @@ app = Flask(__name__)
 app.config['SECRET_KEY']='THISISendLess986'
 Bootstrap(app)
 
+#mysql://bf73b036159af6:c7cec93a@eu-cdbr-west-02.cleardb.net/heroku_9505a2cdbf20733?reconnect=true
 #create username
-username = 'b8dfc228f15bc2'  #os.getenv('C9_USER')
-#mysql://b8dfc228f15bc2:c2717711@eu-cdbr-west-02.cleardb.net/heroku_a775396961c4add?reconnect=true
+#username = os.getenv('C9_USER')
+
 #connect to database
 connection = pymysql.connect(host='eu-cdbr-west-02.cleardb.net',
-							 user=username,    
-							 password='c2717711',
-							 db='heroku_a775396961c4add')#galaxy
+							 user='bf73b036159af6',    
+							 password='c7cec93a',
+							 db='heroku_9505a2cdbf20733')
  
 #variables for query extract data from SQL tables
 union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9"""

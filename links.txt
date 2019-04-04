@@ -1,1 +1,2 @@
 https://scotch.io/@phalconVee/using-mysql-on-heroku
+https://medium.com/the-andela-way/deploying-your-flask-application-to-heroku-c99050bce8f9

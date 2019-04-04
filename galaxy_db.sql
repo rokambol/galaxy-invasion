@@ -15,7 +15,7 @@ CREATE TABLE planets(
 INSERT INTO planets(name, moons, dist_from_sun, diameter, orbit_period,
                     min_surface_temp, max_surface_temp)
 VALUES ('Mercury',0,'70',4879,88,'-173', '473'),
-       ('Venus', 0, '108.2', 1210, 225, '200', '462'),
+       ('Venus', 0, '108.2', 12104, 225, '200', '462'),
        ('Earth', 1, '149.6', 12756, 365.24, '-88', '58'),
        ('Mars', 2, '227.9', 6792, 687, '-153', '20'),
        ('Jupiter', 79, '778.5', 142984, 4333, '-248', '-148'),
