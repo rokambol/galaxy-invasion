@@ -51,7 +51,7 @@ def home():
 	cur = connection.cursor(pymysql.cursors.DictCursor)
 	cur.execute(count1)
 	pop = cur.fetchall()
-	result = zip(res, pop)#zip (join) two query together
+	result = zip(res, pop) #zip (join) two query together
 	return render_template('home.html', page_title='Welcome', result = result, pop=pop)
 
 #route for citizenship page for occupy planet	
