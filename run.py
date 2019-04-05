@@ -44,9 +44,8 @@ count1 =""" SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	cur = connection.cursor(pymysql.cursors.DictCursor)
-	cur.execute(union_table)
+	cur.execute('SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9')
 	res = cur.fetchall()
-	
 	
 	cur = connection.cursor(pymysql.cursors.DictCursor)
 	cur.execute(count1)
@@ -65,7 +64,7 @@ def citizenship():
 			
 		sql_insert_str = 'INSERT INTO citizens (first_name, last_name, email, planet_id) VALUES ("{}", "{}", "{}", "{}");'.format(first_name, last_name, email, planet)
 		cur = connection.cursor()
-		cur.execute(sql_insert_str)
+		cur.execute('INSERT INTO citizens (first_name, last_name, email, planet_id) VALUES ("{}", "{}", "{}", "{}");'.format(first_name, last_name, email, planet))#sql_insert_str
 		connection.commit()
 	else:
 		first_name = ''
@@ -76,7 +75,7 @@ def citizenship():
 	union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9;"""
 			
 	cur = connection.cursor(pymysql.cursors.DictCursor)
-	cur.execute(union_table)
+	cur.execute('SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9;')
 	result = cur.fetchall()
 
 	return render_template('citizenship.html', page_title='Citizens_form',result=result
