@@ -12,10 +12,10 @@ Bootstrap(app)
 #username = os.getenv('C9_USER')
 
 #connect to database
-connection = pymysql.connect(host='eu-cdbr-west-02.cleardb.net',
-							 user='bf73b036159af6',    
-							 password='c7cec93a',
-							 db='heroku_9505a2cdbf20733')
+connection = pymysql.connect(host='cvktne7b4wbj4ks1.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
+							 user='c1pny3zt0ltf9g8t',    
+							 password='lhfimhgovu3fykt0',
+							 db='czgiku21kfnsobrv')
  
 #variables for query extract data from SQL tables
 union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9"""
@@ -48,7 +48,23 @@ def home():
 	res = cur.fetchall()
 	
 	cur = connection.cursor(pymysql.cursors.DictCursor)
-	cur.execute(count1)
+	cur.execute("""SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 1
+			UNION ALL
+			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 2
+			UNION ALL
+			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 3
+			UNION ALL
+			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 4
+			UNION ALL
+			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 5
+			UNION ALL
+			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 6
+			UNION ALL
+			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 7
+			UNION ALL
+			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 8
+			UNION ALL
+			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 9""")
 	pop = cur.fetchall()
 	result = zip(res, pop) #zip (join) two query together
 	return render_template('home.html', page_title='Welcome', result = result, pop=pop)
@@ -75,7 +91,7 @@ def citizenship():
 	union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9;"""
 			
 	cur = connection.cursor(pymysql.cursors.DictCursor)
-	cur.execute('SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9;')
+	cur.execute(union_table)
 	result = cur.fetchall()
 
 	return render_template('citizenship.html', page_title='Citizens_form',result=result
@@ -105,4 +121,4 @@ def planet_details(planet_id):
 	
 	
 	
-app.run(host=os.environ.get('IP'), port=os.environ.get('PORT'), debug=False)
+app.run(host=os.environ.get('IP'), port=os.environ.get('PORT'), debug=True)
