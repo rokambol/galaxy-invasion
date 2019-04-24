@@ -17,6 +17,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
+       <h1 class="text-white">Home Page</h1>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -43,6 +44,8 @@
       <div class="mx-auto text-center">
         <h1 class="mx-auto my-0 text-uppercase">WELCOME</h1>
         <h2 class="text-white-50 mx-auto mt-2 mb-5">Our new home will be outside the Earth. That only way humanity to survive, Let's explore opportunity where human will live in the future...</h2>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">Our project give you opportunity virtually ocupy your favorite planet and receive up to date information about it </h2>
+        <h2 class="text-white-50 mx-auto mt-2 mb-5">To start just scroll down</h2>
         <!--<a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>-->
       </div>
     </div>
@@ -64,10 +67,9 @@
                   <div class="project-text w-100 my-auto text-center text-lg-left">
                     <h4 class="text-white"><a href="{{ url_for('planet_details', planet_id=row.id) }}">{{ row.picture_name }}</a></h4>
                     <p class="mb-0 text-white-50">
-                      Moons: {{ row.moons }}, Distance from son: {{ row.dist_from_sun }}
+                      Moons: {{ row.moons }}, Distance from son: {{ row.dist_from_sun }} millions km
                       populations: {{ p.population }}
                     </p>
-                    <hr class="d-none d-lg-block mb-0 ml-0">
                   </div>
                 </div>
               </div>
@@ -84,11 +86,9 @@
                   <div class="project-text w-100 my-auto text-center text-lg-right">
                     <h4 class="text-white"><a href="{{ url_for('planet_details', planet_id=row.id) }}">{{ row.picture_name }}</a></h4>
                     <p class="mb-0 text-white-50">
-                      Moons: {{ row.moons }} Distance from son: {{ row.dist_from_sun }}
+                      Moons: {{ row.moons }} Distance from son: {{ row.dist_from_sun }} millions km
                       populations: {{ p.population }}
-                      
                     </p>
-                    <hr class="d-none d-lg-block mb-0 mr-0">
                   </div>
                 </div>
               </div>

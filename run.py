@@ -1,6 +1,7 @@
 import os
 import pymysql
-from flask import Flask, json, redirect, render_template, request, url_for, session, escape, jsonify
+import config
+from flask import Flask, json, redirect, render_template, flash, request, url_for, session, escape, jsonify
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
@@ -12,10 +13,10 @@ Bootstrap(app)
 #username = os.getenv('C9_USER')
 
 #connect to database
-connection = pymysql.connect(host='cvktne7b4wbj4ks1.chr7pe7iynqr.eu-west-1.rds.amazonaws.com',
-							 user='c1pny3zt0ltf9g8t',    
-							 password='lhfimhgovu3fykt0',
-							 db='czgiku21kfnsobrv')
+connection = pymysql.connect(host=config.DATABASE_CONFIG['host'],
+                            user=config.DATABASE_CONFIG['user'],
+                            password=config.DATABASE_CONFIG['password'],
+                            db=config.DATABASE_CONFIG['dbname'])
  
 #variables for query extract data from SQL tables
 union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9"""
@@ -72,30 +73,39 @@ def home():
 #route for citizenship page for occupy planet	
 @app.route('/citizenship', methods=['GET', 'POST'])
 def citizenship():
+	cur = connection.cursor(pymysql.cursors.DictCursor)
 	if request.method == "POST":
 		first_name = request.form.get("first_name")
 		last_name = request.form.get("last_name")
 		email = request.form.get("email")
 		planet = request.form.get("planet")
+		params = [email]
+		count = cur.execute('SELECT * FROM citizens WHERE email=%s', params)  # prevent SqlInject
+		if count == 0:	
+			sql_insert_str = 'INSERT INTO citizens (first_name, last_name, email, planet_id) VALUES ("{}", "{}", "{}", "{}");'.format(first_name, last_name, email, planet)
+			cur = connection.cursor()
+			cur.execute('INSERT INTO citizens (first_name, last_name, email, planet_id) VALUES ("{}", "{}", "{}", "{}");'.format(first_name, last_name, email, planet))#sql_insert_str
+			connection.commit()
+			flash('Congratulations you became citizens of you chosen planet')
+		else:
+			cur.execute('SELECT name FROM planets,citizens WHERE email=%s AND planets.id=planet_id',params)
+			planet = cur.fetchall()
+			flash('You already occupy planet, You chosen planet is:')
 			
-		sql_insert_str = 'INSERT INTO citizens (first_name, last_name, email, planet_id) VALUES ("{}", "{}", "{}", "{}");'.format(first_name, last_name, email, planet)
-		cur = connection.cursor()
-		cur.execute('INSERT INTO citizens (first_name, last_name, email, planet_id) VALUES ("{}", "{}", "{}", "{}");'.format(first_name, last_name, email, planet))#sql_insert_str
-		connection.commit()
 	else:
 		first_name = ''
 		last_name = ''
 		email = ''
 		planet = '1'
-
+    
 	union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9;"""
 			
-	cur = connection.cursor(pymysql.cursors.DictCursor)
 	cur.execute(union_table)
 	result = cur.fetchall()
+	
 
 	return render_template('citizenship.html', page_title='Citizens_form',result=result
-							,data=(first_name, last_name, email, planet))
+							,data=(first_name, last_name, email, planet),planet=planet)
 	
 #route for project page 
 @app.route('/project', methods=['GET', 'POST'])
@@ -106,7 +116,7 @@ def project():
 	data = json.dumps(beta)
 
 	return render_template('project.html', page_title='Project', delta=data)
-	
+
 
 #route for planet details page
 @app.route('/planet-details/<planet_id>', methods=['GET'])

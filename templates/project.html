@@ -35,33 +35,21 @@
       </div>
     </div>
   </nav>
-
-  <!--chart section-->
+    
 <section id="projects" class="projects-section bg-black">
-    
-<!--<select id="form">
-    <div  class="container mx-auto align-items-center">
-        <option selected>Choose Graphic</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </div>
-</select>-->
-    
-    
    <h3 class="text-white-50 mx-auto mt-2 mb-5">Chart show distance from each planet to Sun:</h3>  
-    <div  class="container mx-auto align-items-center">
+    <div  class="container mx-auto align-items-center pb-0">
         <div class="row">
             <div id = "graphic" class="col-12">
                 <h6 class="text-white-50 pb-0 mx-auto">in millions kilometers</h6>
             </div>
-             <div id = "graphic1" class="col-12">
-                  <h3 class="text-white-50 mx-auto mt-2 mb-5">Chart show number of moons for each planet:</h3>
-                <h6 class="text-white-50 pb-0 mx-auto">Number of Moons</h6>
+               <h3 class="text-white-50 mx-auto">Chart show diameter for each planet:</h3>
+            <div id = "circles" class="col-12">
+                <h6 class="text-white-50 pb-0 mx-auto"></h6>
             </div>
-            <div id = "graphic2" class="col-12">
-                 <h3 class="text-white-50 mx-auto mt-2 mb-5">Chart show diameter for each planet:</h3>
-                <h6 class="text-white-50 pb-0 mx-auto">in kilometers</h6>
+            
+            <div id = "horizontal" class="col-12">
+                <h6 class="text-white-50 pb-0 mx-auto"></h6>
             </div>
         </div>
     </div>
@@ -83,8 +71,7 @@
         var data = {{ delta|safe }}; //variable get data from python
            return data;
       }
-    
-
+      
       </script>
       <script type="text/javascript" src="static/js/script.js"></script>
     </body> 

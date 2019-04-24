@@ -22,6 +22,16 @@ body{
             font-size: 1.4rem;
             fill: white;
         }
+        .radSol{
+  background: black;
+  fill: #5f89ad;
+}
+
+.circles{
+  color:pink;
+  padding: 1rem;
+  font-size:29
+}
         
 h6 {
     padding-left: 20rem;
