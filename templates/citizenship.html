@@ -11,9 +11,9 @@
     <title>{{ page_title }}</title>
     <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
     <script type="text/javascript">
-   /*(function(){
+   (function(){
       emailjs.init("user_InDnzbGp0eCqm9tRk78cx");
-   })();*/
+   })();
 
 
 </script>
@@ -99,7 +99,7 @@
   <!-- Custom scripts for this template -->
   <script src="{{ url_for('static', filename='js/grayscale.min.js') }}"></script>
   <script type="text/javascript">
-   /*document.getElementById('insert').addEventListener("click", function(){  
+   document.getElementById('insert').addEventListener("click", function(){  
    var data = {
     service_id: 'gmail',
     template_id: 'template_vNFyYhqW',
@@ -119,12 +119,12 @@ $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
     alert('Oops... ' + JSON.stringify(error));
 });
   
-}); */
+}); 
     
 $("document").ready(function(){
     setTimeout(function(){
         $("#message").remove();
-    }, 5000 );
+    }, 10000 );
 });
   </script>
 </body> 
