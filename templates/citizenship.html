@@ -32,7 +32,7 @@
             <a class="nav-link js-scroll-trigger" href="{{ url_for ('home') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{ url_for ('project') }}">Projects</a>
+            <a class="nav-link js-scroll-trigger" href="{{ url_for ('project') }}">Graph page</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{{ url_for ('citizenship') }}">Become a citizen</a>
@@ -98,35 +98,8 @@
 
   <!-- Custom scripts for this template -->
   <script src="{{ url_for('static', filename='js/grayscale.min.js') }}"></script>
-  <script type="text/javascript">
-   document.getElementById('insert').addEventListener("click", function(){  
-   var data = {
-    service_id: 'gmail',
-    template_id: 'template_vNFyYhqW',
-    user_id: 'user_InDnzbGp0eCqm9tRk78cx',
-    template_params: {
-        'username': 'James',
-    }
-};
+  <script src="{{ url_for('static', filename='js/emails.js') }}"></script>
  
-$.ajax('https://api.emailjs.com/api/v1.0/email/send', {
-    type: 'POST',
-    data: JSON.stringify(data),
-    contentType: 'application/json'
-}).done(function() {
-    alert('Your mail is sent!');
-}).fail(function(error) {
-    alert('Oops... ' + JSON.stringify(error));
-});
-  
-}); 
-    
-$("document").ready(function(){
-    setTimeout(function(){
-        $("#message").remove();
-    }, 10000 );
-});
-  </script>
 </body> 
 
 </html>
