@@ -25,8 +25,3 @@ $("document").ready(function(){
         $("#message").remove();
     }, 10000 );
 });
-$("document").ready(function(){
-   setTimeout(function(){
-       window.location.replace("https://space-invasion.herokuapp.com/");
-   }, 1000);
-});
