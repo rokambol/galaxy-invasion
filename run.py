@@ -18,27 +18,6 @@ connection = pymysql.connect(host=config.DATABASE_CONFIG['host'],
                             password=config.DATABASE_CONFIG['password'],
                             db=config.DATABASE_CONFIG['dbname'])
  
-#variables for query extract data from SQL tables
-union_table = """ SELECT * FROM planets JOIN images ON name = picture_name LIMIT 9"""
-
-#query show data from citizens table as population row
-count1 =""" SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 1
-			UNION ALL
-			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 2
-			UNION ALL
-			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 3
-			UNION ALL
-			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 4
-			UNION ALL
-			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 5
-			UNION ALL
-			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 6
-			UNION ALL
-			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 7
-			UNION ALL
-			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 8
-			UNION ALL
-			SELECT IFNULL(COUNT(planet_id), 0) AS population FROM citizens WHERE planet_id = 9; """
 
 
 #route for home page
@@ -86,7 +65,7 @@ def citizenship():
 			cur = connection.cursor()
 			cur.execute('INSERT INTO citizens (first_name, last_name, email, planet_id) VALUES ("{}", "{}", "{}", "{}");'.format(first_name, last_name, email, planet))#sql_insert_str
 			connection.commit()
-			flash('Congratulations you became citizens of you chosen planet')
+			flash('Congratulations!!! you became citizens of you chosen planet!')
 		else:
 			cur.execute('SELECT name FROM planets,citizens WHERE email=%s AND planets.id=planet_id',params)
 			planet = cur.fetchall()
