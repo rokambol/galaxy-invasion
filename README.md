@@ -1,7 +1,8 @@
 # SPACE-INVASION
 
-Application allow user virtually occupy planet in the space and receive information about his chosen planet by e-mail
-[space-invasion](https://space-invasion.herokuapp.com/)
+Application allow user virtually occupy planet in the space and receive information about his chosen planet by e-mail.
+Application could be run at [space-invasion](https://space-invasion.herokuapp.com/)
+
 
 ## UX
  
@@ -122,7 +123,7 @@ I would like to thank my fellow students for their encouragement, tips and bug r
 Many thanks to my mentor Guido Cecilio Garcia Bernal  for his help and tips.
 
 ### Content
--The description of the original television competiton was copied from [Wikipedia](https://en.wikipedia.org/wiki/Minuta_e_mnogo): 
+ 
 The photo of background used in this site was obtained from [giphy.com](https://giphy.com/explore/pictures).
 Picture of the planet are from [space-facts.com](https://space-facts.com).
 comparison schema under planet picture from planet details page are take from [NASA.gov](https://www.nasa.gov)
