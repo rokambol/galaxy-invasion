@@ -106,10 +106,6 @@ The local editor for whole project [cloud9](https://c9.io)
 For Security reason and database corruptions prevention all details for database configuration are move to Config.py file which is remove from Github branches also
 SQL inject prevention are in use. 
 
-To run the code locally:
-
-Clone the [Github](https://github.com/rokambol/Minute-a-lot-game) and run it in your own editor.
-Install the depencies from the requirements file using the command pip install -r requirements.txt.
 
 Have fun!
 
