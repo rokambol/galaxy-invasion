@@ -5,7 +5,7 @@ document.getElementById('insert').addEventListener("click", function(){
     user_id: 'user_InDnzbGp0eCqm9tRk78cx',
     template_params: {
         'username': 'James',
-    }
+    } 
 };
  
 $.ajax('https://api.emailjs.com/api/v1.0/email/send', {

@@ -1,5 +1,0 @@
-https://scotch.io/@phalconVee/using-mysql-on-heroku
-https://medium.com/the-andela-way/deploying-your-flask-application-to-heroku-c99050bce8f9
-heroku login --interactive
-
-https://dba.stackexchange.com/questions/97158/mysql-connection-timeout-on-small-traffic-server
